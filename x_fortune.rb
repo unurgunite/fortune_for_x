@@ -35,7 +35,7 @@ class FortuneQuote < String # :nodoc:
   # @return [FalseClass] if quote is quiet short.
   # @see #short?
   def long?
-    @quote.chomp.count("\r\n|\r|\n/") > HEIGHT
+    @quote.chomp.count("\r\n|\r|\n") > HEIGHT
   end
 
   # +FortuneQuote#short?+                             -> true or false
@@ -46,7 +46,7 @@ class FortuneQuote < String # :nodoc:
   # @return [FalseClass] if quote is too long.
   # @short #long?
   def short?
-    @quote.chomp.count("/\r\n|\r|\n") <= HEIGHT
+    @quote.chomp.count("\r\n|\r|\n") <= HEIGHT
   end
 
   def to_s
