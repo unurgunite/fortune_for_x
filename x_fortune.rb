@@ -13,14 +13,16 @@ class FortuneQuote < String # :nodoc:
     @quote = quote
   end
 
-  # +FortuneQuote#long?+                                   -> String
+  # +FortuneQuote#long?+                                   -> true or false
   #
-  # This method is used to check if quoute is too large for X Windows System.
+  # This method is used to check if quote is too large for X Windows System.
+  #
+  # @return [TrueClass] if quote is too long.
+  # @return [FalseClass] if quote is quiet short.
   def long?
     @quote.chomp.count("\n") > 3
   end
 end
 
-p FortuneQuote.generate_quoute
-
+print FortuneQuote.generate_quoute
 
