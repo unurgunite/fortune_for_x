@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+# +FortuneQuote+ is a class represented quote object to display on X Windows System.
 class FortuneQuote < String # :nodoc:
   FORTUNE_PATH = '/usr/bin/env fortune'
   WIDTH = 153
@@ -17,13 +18,11 @@ class FortuneQuote < String # :nodoc:
     loop do
       fortune = FortuneQuote.new(`#{FORTUNE_PATH} -n #{WIDTH}`)
       break fortune if fortune.short?
-
-      #fortune = `/usr/local/bin/fortune -n 153`
-      #break fortune if !FortuneQuote.new(fortune).long?
     end
   end
 
   def initialize(quote)
+    super(quote)
     @quote = quote
   end
 
@@ -44,20 +43,10 @@ class FortuneQuote < String # :nodoc:
   #
   # @return [TrueClass] if quote is quiet short.
   # @return [FalseClass] if quote is too long.
-  # @short #long?
+  # @see #long?
   def short?
     @quote.chomp.count("\r\n|\r|\n") <= HEIGHT
   end
-
-  def to_s
-    quote
-  end
-
-  def inspect
-    "#<#{self.class}:#{(object_id << 1).to_s(16)}>"
-  end
 end
 
-puts FortuneQuote.new('a')
-puts FortuneQuote.generate_quote
-p FortuneQuote.generate_quote
+print FortuneQuote.generate_quote
